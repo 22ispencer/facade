@@ -240,6 +240,25 @@ def steady_bar() -> str:
     return decscusr(6)
 
 
+# Viewport Positioning
+def scroll_up(n: int = 1) -> str:
+    """
+    Scroll Up - SU
+
+    Scroll text up by <n>. Also known as pan down, new lines will in from the
+    bottom fo the screen.
+    """
+    return CSI + str(n) + "S"
+
+
+def scroll_down(n: int = 1) -> str:
+    """
+    Scroll Down - SD
+
+    Scroll text down by <n>. Also known as pan up, new lines will in from the
+    bottom fo the screen.
+    """
+    return CSI + str(n) + "T"
 def default() -> str:
     return CSI + "0m"
 
