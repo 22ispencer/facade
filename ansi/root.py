@@ -173,13 +173,17 @@ def hide_cursor() -> str:
 
 
 # Cursor Shape
+def decscusr(n: int) -> str:
+    return CSI + str(n) + " q"
+
+
 def user_shape() -> str:
     """
     User Shape - DECSCUSR
 
     Default cursor shape configured by the user.
     """
-    return CSI + "0 q"
+    return decscusr(0)
 
 
 def blinking_block() -> str:
@@ -188,7 +192,7 @@ def blinking_block() -> str:
 
     Blinking block cursor shape.
     """
-    return CSI + "1 q"
+    return decscusr(1)
 
 
 def steady_block() -> str:
@@ -197,7 +201,7 @@ def steady_block() -> str:
 
     Steady block cursor shape.
     """
-    return CSI + "2 q"
+    return decscusr(2)
 
 
 def blinking_underline() -> str:
@@ -206,7 +210,7 @@ def blinking_underline() -> str:
 
     Blinking underline cursor shape.
     """
-    return CSI + "3 q"
+    return decscusr(3)
 
 
 def steady_underline() -> str:
@@ -215,7 +219,7 @@ def steady_underline() -> str:
 
     Steady underline cursor shape.
     """
-    return CSI + "4 q"
+    return decscusr(4)
 
 
 def blinking_bar() -> str:
@@ -224,7 +228,7 @@ def blinking_bar() -> str:
 
     Blinking bar cursor shape.
     """
-    return CSI + "5 q"
+    return decscusr(5)
 
 
 def steady_bar() -> str:
@@ -233,7 +237,7 @@ def steady_bar() -> str:
 
     Steady bar cursor shape.
     """
-    return CSI + "6 q"
+    return decscusr(6)
 
 
 def default() -> str:
