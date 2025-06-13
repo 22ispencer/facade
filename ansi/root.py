@@ -7,12 +7,12 @@ documented version [here][ms-docs]
 [ms-docs]: https://learn.microsoft.com/en-us/windows/console/console-virtual-terminal-sequences#cursor-visibility
 """
 
-from typing import Literal
+from typing import Final, Literal
 
 
-ESC = "\x1b"
-CSI = ESC + "["  # Control Sequence Introducer
-OSC = ESC + "]"  # Operating System Command
+ESC: Final[str] = "\x1b"
+CSI: Final[str] = ESC + "["  # Control Sequence Introducer
+OSC: Final[str] = ESC + "]"  # Operating System Command
 
 
 # Simple Cursor Positioning
