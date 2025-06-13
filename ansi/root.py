@@ -7,6 +7,9 @@ documented version [here][ms-docs]
 [ms-docs]: https://learn.microsoft.com/en-us/windows/console/console-virtual-terminal-sequences#cursor-visibility
 """
 
+from typing import Literal
+
+
 ESC = "\x1b"
 CSI = ESC + "["  # Control Sequence Introducer
 OSC = ESC + "]"  # Operating System Command
@@ -259,6 +262,86 @@ def scroll_down(n: int = 1) -> str:
     bottom fo the screen.
     """
     return CSI + str(n) + "T"
+
+
+# Text Modification
+def insert_character(n: int = 1) -> str:
+    """
+    Insert Character - ICH
+
+    Insert <n> spaces at the current cursor position, shifting all existing text
+    to the right. Text exiting the screen to the right is removed.
+    """
+    return CSI + str(n) + "@"
+
+
+def delete_character(n: int = 1) -> str:
+    """
+    Delete Character - DCH
+
+    Delete <n> characters at the current cursor position, shifting in space
+    characters from the right edge of the screen.
+    """
+    return CSI + str(n) + "P"
+
+
+def erase_character(n: int = 1) -> str:
+    """
+    Erase Character - ECH
+
+    Erase <n> characters from the current cursor position by overwriting them
+    with a space character.
+    """
+    return CSI + str(n) + "X"
+
+
+def insert_line(n: int = 1) -> str:
+    """
+    Insert Line - IL
+
+    Inserts <n> lines into the buffer at the cursor position. The line the
+    cursor is on, and lines below it, will be shifted downwards.
+    """
+    return CSI + str(n) + "L"
+
+
+def delete_line(n: int = 1) -> str:
+    """
+    Delete Line - DL
+
+    Deletes <n> lines from the buffer, starting with the row the cursor is on.
+    """
+    return CSI + str(n) + "M"
+
+
+# For the following two commands the parameter <n> has 3 valid values
+# 0 erases from the current cursor position (inclusive) to the end of the
+#   line/display
+# 1 erases from the beginning of the line/display up to and including the
+#   current cursor position
+# 2 erases the entire line/display
+
+
+def erase_in_display(n: Literal[0, 1, 2]) -> str:
+    """
+    Erase in Display - ED
+
+    Replace all text in the current viewport/screen specified by <n> with space
+    characters
+    """
+    return CSI + str(n) + "J"
+
+
+def erase_in_line(n: Literal[0, 1, 2]) -> str:
+    """
+    Erase in Line - EL
+
+    Replace all text on the line with the cursor specified by <n> with space
+    characters
+    """
+    return CSI + str(n) + "K"
+
+
 def default() -> str:
     return CSI + "0m"
 
